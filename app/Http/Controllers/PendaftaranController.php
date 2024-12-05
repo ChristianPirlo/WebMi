@@ -8,10 +8,21 @@ use App\Grup;
 use App\Perusahaan;
 use App\Unit;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth; // Import Auth
+use Illuminate\Support\Facades\Auth;
 
 class PendaftaranController extends Controller
 {
+    public function index()
+    {
+        // Ambil semua data dari tabel pendaftaran
+        $pendaftarans = Pendaftaran::all();
+
+        \Log::debug('Pendaftaran data:', $pendaftarans->toArray());
+
+        // Kirim data ke view
+        return view('unit.daftarImprovement', compact('pendaftarans'));
+    }
+
     public function create()
     {
         // Ambil semua data perusahaan dan unit untuk opsi select
@@ -21,6 +32,7 @@ class PendaftaranController extends Controller
         // Tampilkan form dengan data perusahaan dan unit
         return view('unit.pendaftaran2', compact('perusahaans', 'units'));
     }
+
     public function store(Request $request)
     {
         // Debug: Log semua data yang diterima dalam request
@@ -39,12 +51,12 @@ class PendaftaranController extends Controller
             'grup_data' => 'required|json',  // Validasi jika grup_data adalah JSON yang valid
         ]);
 
-   // Pastikan ID unit yang diterima benar
-   $unit = Unit::find($request->unit);
-   if (!$unit) {
-       Log::error("Unit not found with ID: " . $request->unit);
-       return back()->withErrors("Unit tidak ditemukan");
-   }
+        // Pastikan ID unit yang diterima benar
+        $unit = Unit::find($request->unit);
+        if (!$unit) {
+            Log::error("Unit not found with ID: " . $request->unit);
+            return back()->withErrors("Unit tidak ditemukan");
+        }
 
         // Menyimpan data pendaftaran ke dalam database
         $pendaftaran = Pendaftaran::create([
@@ -56,16 +68,6 @@ class PendaftaranController extends Controller
             'judul' => $request->judul,
             'tema' => $request->tema,
         ]);
-        // $pendaftaran = Pendaftaran::create([
-        //     'kreteria_grup' => $request->kreteria_grup,
-        //     'pabrik' => $perusahaan->nama_perusahaan, // Simpan nama perusahaan
-        //     'unit' => $unit->nama_unit, // Simpan nama unit
-        //     'nama_grup' => $request->nama_grup,
-        //     'ketua_grup' => $request->ketua_grup, // Pastikan ketua_grup ada di form
-        //     'nomor_tema' => $request->nomor_tema,
-        //     'judul' => $request->judul,
-        //     'tema' => $request->tema,
-        // ]);
 
         // Mengonversi grup_data (JSON) menjadi array
         $grupData = json_decode($request->grup_data, true);
@@ -85,7 +87,6 @@ class PendaftaranController extends Controller
                 } else {
                     Log::error('Foto tidak valid atau tidak ada');
                 }
-
             }
 
             // Jika foto ada di grup_data dan bukan "Tidak ada foto", maka gunakan nama file
@@ -108,12 +109,41 @@ class PendaftaranController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Pendaftaran berhasil disimpan.');
     }
- // Method untuk mendapatkan unit berdasarkan id_perusahaan
- public function getUnits(Request $request)
- {
-     $units = Unit::where('id_perusahaan', $request->id_perusahaan)->get();
 
-     return response()->json($units);
- }
+    // Method untuk mendapatkan unit berdasarkan id_perusahaan
+    public function getUnits(Request $request)
+    {
+        $units = Unit::where('id_perusahaan', $request->id_perusahaan)->get();
 
+        return response()->json($units);
+    }
+
+    // Fungsi untuk mengambil semua grup
+    public function getStrukturAnggota($idPendaftaran)
+    {
+        // Ambil data grup berdasarkan id_pendaftaran
+        $grup = Grup::where('id_pendaftaran', $idPendaftaran)
+                    ->orderBy('jabatan_grup')
+                    ->get();
+
+        // Menambahkan 'perner' ke response
+        $grupData = $grup->map(function($item) {
+            $item->perner = $item->perner; // Sertakan perner
+            return $item;
+        });
+
+        return response()->json($grupData);
+    }
+    public function show($id_pendaftaran)
+    {
+        $pendaftaran = Pendaftaran::find($id_pendaftaran);
+
+        if (!$pendaftaran) {
+            return response()->json(['error' => 'ID Pendaftaran tidak ditemukan']);
+        }
+
+        $grupAnggota = Grup::where('id_pendaftaran', $id_pendaftaran)->get();
+
+        return response()->json(['pendaftaran' => $pendaftaran, 'grupAnggota' => $grupAnggota]);
+    }
 }

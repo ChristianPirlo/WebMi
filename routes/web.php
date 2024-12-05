@@ -50,6 +50,9 @@ Route::get('/superadmin/pendaftaran', function () {
 Route::get('/superadmin/daftarImprovementSA', function () {
     return view('superadmin.daftarImprovementSA');
 })->name('superadmin.daftarImprovementSA');
+Route::get('/superadmin/daftarApproval', function () {
+    return view('superadmin.daftarApproval');
+})->name('superadmin.daftarApproval');
 Route::get('/superadmin/arsip', function () {
     return view('superadmin.arsip');
 })->name('superadmin.arsip');
@@ -139,6 +142,27 @@ Route::prefix('unit')->group(function () {
     Route::post('/get-units', [PendaftaranController::class, 'getUnits'])->name('get-units');
 });
 
+
+// Route::get('/unit/daftarImprovement', [PendaftaranController::class, 'index'])->name('daftarImprovement');
+// Route::get('/unit/daftarImprovement/struktur/{id_pendaftaran}', 'DaftarImprovementController@getStrukturAnggota');
+// Route::get('/unit/daftarImprovement/{idPendaftaran}', 'PendaftaranController@getStrukturAnggota');
+// Route untuk menampilkan daftar Improvement
+Route::get('/unit/daftarImprovement', [PendaftaranController::class, 'index']);
+
+// Route untuk menampilkan struktur anggota berdasarkan idPendaftaran
+Route::get('/unit/daftarImprovement/{idPendaftaran}', [PendaftaranController::class, 'getStrukturAnggota']);
+
+
+
+
+// Route::get('/unit/daftarImprovement', [PendaftaranController::class, 'getAllStrukturAnggota']);
+
+
+
+
+
+
+
 //DATA
 Route::post('/insert-perusahaan', 'DataController@insertPerusahaan');
 Route::post('/insert-unit', 'DataController@insertUnit');
@@ -153,6 +177,7 @@ Route::get('/form-user', function() {
 });
 
 Route::post('/user', [DataController::class, 'insertUser'])->name('data.insertUser');
+
 
 
 // Authentication routes

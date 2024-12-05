@@ -12,10 +12,11 @@
 
 
     <link rel="stylesheet" href="../../css/tableSADash.css">
+
 </head>
 <body>
     <div class="table-container">
-        <h2>DAFTAR IMPROVEMENT GRUP</h2>
+        <h2>DAFTAR APPROVAL</h2>
         <div class="table-scroll">
             <table>
                 <thead>
@@ -125,62 +126,62 @@
 <!-- Popup for Table -->
 <div class="popup" id="popup-table">
     <div class="popup-content">
-        <h3>Detail Status</h3>
+        <h2>Detail Approval</h2>
         <table class="popup-table">
             <thead>
                 <tr>
-                    <th>Tanggal</th>
-                    <th>Tahapan</th>
-                    <th>Dokumen</th>
-                    <th>Approval</th>
+                    <th>ID Grup</th>
                     <th>Status</th>
+                    <th>Perner</th>
+                    <th>Nama</th>
+                    <th>Keputusan</th>
                 </tr>
             </thead>
             <tbody id="popup-table-body">
                 <tr>
-                    <td>2024-11-19</td>
+                    <td>72354534</td>
                     <td>Langkah 1</td>
+                    <td>12467001</td>
+                    <td>John Doe</td>
                     <td>
-                        <a href="/path/to/dokumen1" target="_blank">
-                            <i class="fas fa-file" title="View" style="color: #607274"></i>
-                        </a>
+                        <div class="action-buttons">
+                            <button class="btn-acc" onclick="openApproveModal()">Approve</button>
+                            <button class="btn-reject" onclick="openRejectModal()">Reject</button>
+                        </div>
                     </td>
+                </tr>
 
-                     <td>
-                        <button class="open-modal-button" data-step="detail">Detail</button>
-                    </td>
-                    <td> On Progress</td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 2</td>
-                    <td>
-                        <a href="/path/to/dokumen1" target="_blank">
-                            <i class="fas fa-file" title="View" style="color: #607274"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <button class="open-modal-button" data-step="detail">Detail</button>
-                    </td>
-                    <td> On Progress</td>
-        </tr>
-         <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 3</td>
-                    <td>
-                        <a href="/path/to/dokumen1" target="_blank">
-                            <i class="fas fa-file" title="View" style="color: #607274"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <button class="open-modal-button" data-step="detail">Detail</button>
-                    </td>
-                    <td> On Progress</td>
-                </tr>
 
             </tbody>
         </table>
         <button class="popup-close" id="popup-close-table">Close</button>
+    </div>
+</div>
+
+
+<!-- Modal Approve -->
+<div id="modal-approve" class="modal approve-modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeApproveModal()">&times;</span>
+        <h2>Approve Notes</h2>
+        <textarea id="approve-notes" placeholder="Enter your approval notes..." rows="5"></textarea>
+        <div class="modal-actions">
+            <button class="btn-submit" onclick="submitApproveNotes()">Submit</button>
+            <button class="btn-cancel" onclick="closeApproveModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Reject -->
+<div id="modal-reject" class="modal reject-modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeRejectModal()">&times;</span>
+        <h2>Reject Notes</h2>
+        <textarea id="reject-notes" placeholder="Enter your rejection notes..." rows="5"></textarea>
+        <div class="modal-actions">
+            <button class="btn-submit" onclick="submitRejectNotes()">Submit</button>
+            <button class="btn-cancel" onclick="closeRejectModal()">Cancel</button>
+        </div>
     </div>
 </div>
 
@@ -209,7 +210,7 @@
 <!-- Modal for Detail Approval -->
 <div class="modal" id="modal-detail-approval">
     <div class="modal-content">
-        <h3>Approval</h3>
+        <h3>Detail Approval</h3>
         <table class="detail-approval-table">
             <thead>
                 <tr>
@@ -421,6 +422,43 @@ document.getElementById('close-modal').addEventListener('click', function() {
     document.getElementById('upload-modal').style.display = 'none';
 });
 
+// Approve Modal Functions
+function openApproveModal() {
+    document.getElementById("modal-approve").style.display = "flex";
+}
+
+function closeApproveModal() {
+    document.getElementById("modal-approve").style.display = "none";
+}
+
+function submitApproveNotes() {
+    const notes = document.getElementById("approve-notes").value.trim();
+    if (notes === "") {
+        alert("Please provide approval notes before submitting.");
+        return;
+    }
+    alert("Approval Notes: " + notes);
+    closeApproveModal();
+}
+
+// Reject Modal Functions
+function openRejectModal() {
+    document.getElementById("modal-reject").style.display = "flex";
+}
+
+function closeRejectModal() {
+    document.getElementById("modal-reject").style.display = "none";
+}
+
+function submitRejectNotes() {
+    const notes = document.getElementById("reject-notes").value.trim();
+    if (notes === "") {
+        alert("Please provide rejection notes before submitting.");
+        return;
+    }
+    alert("Rejection Notes: " + notes);
+    closeRejectModal();
+}
 
 
 

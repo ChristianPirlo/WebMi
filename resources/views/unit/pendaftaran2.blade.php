@@ -104,6 +104,7 @@
     <button type="button" class="insert-btn" onclick="addGrup()">+ Tambah</button>
 
      <!-- Scrollable Table -->
+     <div class="table-scroll">
         <table>
             <thead>
                 <tr>
@@ -118,9 +119,10 @@
                     <!-- Data akan ditambahkan di sini -->
                 </tbody>
         </table>
+    </div>
         <button type="submit" class="submit-btn">SUBMIT</button>
     </form>
-</div>
+{{-- </div> --}}
 
 
 @push('scripts')

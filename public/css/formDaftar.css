@@ -15,7 +15,7 @@ body {
     max-width: 1000px;
     padding: 30px;
     position: -webkit-sticky;
-    margin-top: -10px;
+    margin-top: 40px;
     margin-left: 150px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

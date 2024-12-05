@@ -533,71 +533,59 @@ button[class="btn-reject"]{
 .btn-reject:hover {
     background-color: #de9087; /* Darker red on hover */
 }
-/* Popup Keterangan Styles */
-.popup-keterangan {
-    display: none; /* Initially hide the popup */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 1000; /* Ensure it appears above other content */
-}
 
-.popup-keterangan .popup-content {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 100%;
-}
-
-.popup-keterangan h3 {
-    text-align: center;
-    font-size: 20px;
+.reject-modal h2 {
     color: #333;
-
 }
 
-.popup-keterangan .form-group {
-    margin-bottom: 15px;
-}
-
-.popup-keterangan textarea {
-    width: 100%;
-    height: 100px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    resize: vertical;
-}
-
-/* Submit button styling */
-.popup-keterangan button:first-child {
-    background-color: #3e8d50;
-    width: 90px;
-    margin-left: 420px;
-
-}
-
-.popup-keterangan button:first-child:hover {
-    background-color: #218838;
-}
-
-/* Close button styling */
-.popup-keterangan .popup-close {
+.reject-modal .btn-submit {
     background-color: #dc3545;
     color: white;
-    margin-top: 60px;
-    margin-left: 250px;
 }
 
-.popup-keterangan .popup-close:hover {
-    background-color: #c82333;
+/* General Cancel Button */
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal textarea {
+    width: 95%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    margin: 15px 0;
+    resize: none;
+}
+
+.modal-actions button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.approve-modal h2 {
+    color: #333;
+}
+
+.approve-modal .btn-submit {
+    background-color: #28a745;
+    color: white;
 }

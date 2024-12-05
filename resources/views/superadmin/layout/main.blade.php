@@ -47,9 +47,13 @@
                 <i class="fas fa-home"></i>
                 Dashboard
             </a>
+            <a href="/superadmin/daftarApproval">
+                <i class="fas fa-check"></i>
+                Daftar Approval
+            </a>
             <a href="/superadmin/daftarImprovementSA">
                 <i class="fas fa-list"></i>
-                Delta Improvement
+                Daftar Improvement
             </a>
             <a href="/superadmin/arsip">
                 <i class="fas fa-book"></i>
@@ -79,6 +83,6 @@
     <div class="main-content">
         @yield('content')
     </div>
-
+    @stack('scripts')
 </body>
 </html>

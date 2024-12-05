@@ -20,6 +20,10 @@ class SuperadminController extends Controller
     {
         return view('superadmin/daftarImprovementSA');
     }
+    public function daftarApproval()
+    {
+        return view('superadmin/daftarApproval');
+    }
     public function arsip()
     {
         return view('superadmin/arsip');
