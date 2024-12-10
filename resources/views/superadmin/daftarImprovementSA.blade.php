@@ -33,401 +33,153 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($pendaftarans as $key => $pendaftaran)
                     <tr>
-                        <td>1</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>
-                            <!-- Tombol ID Pendaftaran yang memicu popup ID Pendaftaran -->
-                            <button class="popup-btn-id" data-id="5755383" data-label="Detail ID Pendaftaran">72575003</button>
+                            <button class="popup-btn-id" data-id="{{ $pendaftaran->id_pendaftaran }}">
+                                {{ $pendaftaran->id_pendaftaran }}
+                            </button>
                         </td>
-                        <td>Sido IT</td>
-                        <td>IT</td>
-                        <td>Sido Muncul</td>
-                        <td>SGA</td>
-                        <td>Efisiensi</td>
-                        <td>Improvement</td>
-
-                        <td>19/11/2024</td>
+                        <td>{{ $pendaftaran->nama_grup }}</td>
+                        <td>{{ $pendaftaran->unit }}</td>
+                        <td>{{ $pendaftaran->pabrik }}</td>
+                        <td>{{ $pendaftaran->kreteria_grup }}</td>
+                        <td>{{ $pendaftaran->tema }}</td>
+                        <td>{{ $pendaftaran->judul }}</td>
+                        <td>{{ $pendaftaran->updated_at ? $pendaftaran->updated_at->format('d/m/Y') : '-' }}</td>
                         <td>
-                            <!-- Tombol Status yang memicu popup Tabel -->
                             <button class="popup-btn-status">Langkah 1</button>
                         </td>
                     </tr>
-                    <!-- Add other rows similarly -->
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+ <!-- Overlay -->
+ <div class="overlay" id="overlay"></div>
 
-    <div class="popup" id="popup-id">
-        <div class="popup-content">
-            <h3 id="popup-id-title">Struktur Anggota</h3>
-            <form id="popup-id-content">
-                <div class="input-container">
-                    <label for="id-pendaftaran">ID Pendaftaran</label>
-                    <input type="text" id="id-pendaftaran" name="id-pendaftaran">
+ <!-- Popup Struktur Anggota -->
+ <div class="popup" id="popup">
+     {{-- <span class="close-btn" id="close-btn">&times;</span> --}}
+     <h3>Struktur Anggota</h3>
+     <form id="struktur-form">
+         <div class="input-container">
+             <label for="id-pendaftaran">ID Pendaftaran</label>
+             <input type="text" id="id-pendaftaran" name="id-pendaftaran" readonly>
+         </div>
+         <div class="input-container">
+             <label for="sponsor">Nama Sponsor</label>
+             <input type="text" id="sponsor" name="sponsor" readonly>
+             <input type="text" id="sponsor-perner" name="sponsor-perner" readonly>
+         </div>
+         <div class="input-container">
+             <label for="fasilitator">Nama Fasilitator</label>
+             <input type="text" id="fasilitator" name="fasilitator" readonly>
+             <input type="text" id="fasilitator-perner" name="fasilitator-perner" readonly>
+         </div>
+         <div class="input-container">
+             <label for="ketua">Ketua Kelompok</label>
+             <input type="text" id="ketua" name="ketua" readonly>
+             <input type="text" id="ketua-perner" name="ketua-perner" readonly>
+         </div>
+         <div class="input-container">
+             <label for="sekretaris">Sekretaris</label>
+             <input type="text" id="sekretaris" name="sekretaris" readonly>
+             <input type="text" id="sekretaris-perner" name="sekretaris-perner" readonly>
+         </div>
 
-                </div>
-                <div class="input-container">
-                    <label for="sponsor">Nama Sponsor</label>
-                    <input type="text" id="sponsor" name="sponsor">
-                    <input type="text" class="short-input" id="short-sponsor" name="short-sponsor">
-                </div>
-                <div class="input-container">
-                    <label for="fasilitator">Nama Fasilitator</label>
-                    <input type="text" id="fasilitator" name="fasilitator">
-                    <input type="text" class="short-input" id="short-fasilitator" name="short-fasilitator">
-                </div>
-                <div class="input-container">
-                    <label for="ketua">Ketua Kelompok</label>
-                    <input type="text" id="ketua" name="ketua">
-                    <input type="text" class="short-input" id="short-ketua" name="short-ketua">
-                </div>
-                <div class="input-container">
-                    <label for="sekretaris">Sekretaris</label>
-                    <input type="text" id="sekretaris" name="sekretaris">
-                    <input type="text" class="short-input" id="short-sekretaris" name="short-sekretaris">
-                </div>
-                <div class="input-container">
-                    <label for="anggota1">Anggota 1</label>
-                    <input type="text" id="anggota1" name="anggota1">
-                    <input type="text" class="short-input" id="short-anggota1" name="short-anggota1">
-                </div>
-                <div class="input-container">
-                    <label for="anggota2">Anggota 2</label>
-                    <input type="text" id="anggota2" name="anggota2">
-                    <input type="text" class="short-input" id="short-anggota2" name="short-anggota2">
-                </div>
-                <div class="input-container">
-                    <label for="anggota3">Anggota 3</label>
-                    <input type="text" id="anggota3" name="anggota3">
-                    <input type="text" class="short-input" id="short-anggota3" name="short-anggota3">
-                </div>
-                <div class="input-container">
-                    <label for="anggota4">Anggota 4</label>
-                    <input type="text" id="anggota4" name="anggota4">
-                    <input type="text" class="short-input" id="short-anggota4" name="short-anggota4">
-                </div>
-                <div class="input-container">
-                    <label for="anggota5">Anggota 5</label>
-                    <input type="text" id="anggota5" name="anggota5">
-                    <input type="text" class="short-input" id="short-anggota5" name="short-anggota5">
-                </div>
-                <div class="input-container">
-                    <label for="anggota6">Anggota 6</label>
-                    <input type="text" id="anggota6" name="anggota6">
-                    <input type="text" class="short-input" id="short-anggota6" name="short-anggota6">
-                </div>
-            </form>
-            <button class="popup-close" id="popup-close-id">Close</button>
-        </div>
-    </div>
+         <!-- Anggota Grup -->
 
-<!-- Popup for Table -->
-<div class="popup" id="popup-table">
-    <div class="popup-content">
-        <h3>Detail Status</h3>
-        <table class="popup-table">
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Tahapan</th>
-                    <th>Dokumen</th>
-                    <th>Approval</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="popup-table-body">
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 1</td>
-                    <td>
-                        <a href="/path/to/dokumen1" target="_blank">
-                            <i class="fas fa-file" title="View" style="color: #607274"></i>
-                        </a>
-                    </td>
+         <div id="anggota-container" class="anggota-container"></div>
+         <div class="form-actions">
+             <button class="popup-close" id="popup-close-id">Close</button>
+         </div>
+     </form>
+ </div>
 
-                     <td>
-                        <button class="open-modal-button" data-step="detail">Detail</button>
-                    </td>
-                    <td> On Progress</td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 2</td>
-                    <td>
-                        <a href="/path/to/dokumen1" target="_blank">
-                            <i class="fas fa-file" title="View" style="color: #607274"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <button class="open-modal-button" data-step="detail">Detail</button>
-                    </td>
-                    <td> On Progress</td>
-        </tr>
-         <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 3</td>
-                    <td>
-                        <a href="/path/to/dokumen1" target="_blank">
-                            <i class="fas fa-file" title="View" style="color: #607274"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <button class="open-modal-button" data-step="detail">Detail</button>
-                    </td>
-                    <td> On Progress</td>
-                </tr>
+ @push('scripts')
+ <script>
+document.querySelectorAll('.popup-btn-id').forEach(button => {
+button.addEventListener('click', function () {
+ // Menampilkan popup
+ document.getElementById('overlay').style.display = 'block';
+ document.getElementById('popup').style.display = 'block';
 
-            </tbody>
-        </table>
-        <button class="popup-close" id="popup-close-table">Close</button>
-    </div>
-</div>
+ const idPendaftaran = button.getAttribute('data-id'); // Mengambil data-id dari button
 
-<!-- Popup Modal for Keterangan (Comment Form) -->
-<div class="popup-keterangan" id="popup-keterangan" style="display: none;">
-    <div class="popup-content">
-        <h3>Berikan Keterangan</h3>
-        <form id="keterangan-form">
-            <div class="form-group">
-                <label for="keterangan">Komentar:</label>
-                <textarea id="keterangan" name="keterangan" rows="4" required placeholder="Tuliskan keterangan..."></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn-submit">Submit</button>
-                <button type="button" class="popup-close" id="popup-close-keterangan">Close</button>
-            </div>
-        </form>
-        <div id="success-message" style="display: none; color: green;">
-            Komentar berhasil disubmit!
-        </div>
-    </div>
-</div>
+ // Bersihkan container anggota sebelum memuat data baru
+ const anggotaContainer = document.getElementById('anggota-container');
+ anggotaContainer.innerHTML = ''; // Hapus semua elemen di dalam container
 
+ // Ambil data dari server berdasarkan id_pendaftaran
+ fetch(`/superadmin/daftarApproval/${idPendaftaran}`, {
+     method: 'GET',
+     headers: { 'Content-Type': 'application/json' }
+ })
+ .then(response => response.json())
+ .then(data => {
+     console.log(data); // Debug: Periksa apakah data diterima
 
+     // Menampilkan id_pendaftaran di form
+     document.getElementById('id-pendaftaran').value = data[0].id_pendaftaran; // Pastikan data.id_pendaftaran ada
 
-<!-- Modal for Detail Approval -->
-<div class="modal" id="modal-detail-approval">
-    <div class="modal-content">
-        <h3>Approval</h3>
-        <table class="detail-approval-table">
-            <thead>
-                <tr>
-                    <th>Perner</th>
-                    <th>Nama</th>
-                    <th>Keterangan</th>
-                    <th>Status</th>
-                    <th>Tanggal Approval</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>16372842</td>
-                    <td>Pak ... </td>
-                    <td>Mohon langkah selanjutnya..</td>
-                    <td>Disetujui</td>
-                    <td>20/11/2024</td>
-                </tr>
-                <tr>
-                    <td>83292834</td>
-                    <td>Bu ... </td>
-                    <td>Mohon langkah selanjutnya..</td>
-                    <td>Disetujui</td>
-                    <td>20/11/2024</td>
-                </tr>
-            </tbody>
-        </table>
-        <button class="close-modal" id="modal-close">Close</button>
-    </div>
-</div>
+     // Menampilkan data anggota ke input form berdasarkan jabatan_grup
+     data.forEach((grup, index) => {
+         if (grup.jabatan_grup === 'sponsor') {
+             document.getElementById('sponsor').value = grup.nama;
+             document.getElementById('sponsor-perner').value = grup.perner;
+         } else if (grup.jabatan_grup === 'fasilitator') {
+             document.getElementById('fasilitator').value = grup.nama;
+             document.getElementById('fasilitator-perner').value = grup.perner;
+         } else if (grup.jabatan_grup === 'ketua') {
+             document.getElementById('ketua').value = grup.nama;
+             document.getElementById('ketua-perner').value = grup.perner;
+         } else if (grup.jabatan_grup === 'sekretaris') {
+             document.getElementById('sekretaris').value = grup.nama;
+             document.getElementById('sekretaris-perner').value = grup.perner;
+         } else if (grup.jabatan_grup === 'anggota') {
+             // Menampilkan setiap anggota dengan kolom nama dan perner terpisah
+             const divAnggota = document.createElement('div');
+             divAnggota.classList.add('input-container'); // Menambahkan class agar tampil seragam
 
-<!-- Modal for Upload Risalah -->
+             // Label Anggota (Anggota 1, Anggota 2, dst)
+             const label = document.createElement('label');
+             label.textContent = `Anggota ${index + 1}`; // Menambahkan label dinamis
+             divAnggota.appendChild(label);
 
+             // Input untuk nama anggota
+             const inputNama = document.createElement('input');
+             inputNama.type = 'text';
+             inputNama.value = grup.nama;
+             inputNama.readOnly = true;
+             divAnggota.appendChild(inputNama);
 
-    <script>
-// Script popup
+             // Input untuk perner anggota
+             const inputPerner = document.createElement('input');
+             inputPerner.type = 'text';
+             inputPerner.value = grup.perner;
+             inputPerner.readOnly = true;
+             divAnggota.appendChild(inputPerner);
 
-// Ambil elemen popup dan tombol close
-const popupId = document.getElementById("popup-id");
-const popupJudul = document.getElementById("popup-judul");
-const popupTable = document.getElementById("popup-table");
-const popupKeterangan = document.getElementById("popup-keterangan"); // New popup for comments
-const popupCloseIdButton = document.getElementById("popup-close-id");
-const popupCloseJudulButton = document.getElementById("popup-close-judul");
-const popupCloseTableButton = document.getElementById("popup-close-table");
-const popupCloseKeteranganButton = document.getElementById("popup-close-keterangan"); // Close button for Keterangan popup
-
-// Fungsi untuk membuka popup ID Pendaftaran
-function openIdPopup(id, tanggal, tema) {
-    // Isi data ID Pendaftaran pada form
-    document.getElementById("id-pendaftaran").value = id;
-    popupId.style.display = "block";
-}
-
-// Fungsi untuk membuka popup Table
-function openTablePopup() {
-    popupTable.style.display = "block";
-}
-
-// Fungsi untuk membuka popup Keterangan (Comment Form)
-function openKeteranganPopup() {
-    popupKeterangan.style.display = "block"; // Show the comment form popup
-}
-
-// Fungsi untuk menutup popup ID Pendaftaran
-function closeIdPopup() {
-    popupId.style.display = "none";
-}
-
-// Fungsi untuk menutup popup Table
-function closeTablePopup() {
-    popupTable.style.display = "none";
-}
-
-// Fungsi untuk menutup popup Keterangan
-function closeKeteranganPopup() {
-    popupKeterangan.style.display = "none";
-}
-
-// Menangani klik pada tombol ID Pendaftaran untuk membuka popup ID Pendaftaran
-document.querySelectorAll(".popup-btn-id").forEach(button => {
-    button.addEventListener("click", (e) => {
-        const id = e.target.getAttribute("data-id");
-        const label = e.target.getAttribute("data-label");
-        openIdPopup(id, "19/11/2024", "Effrsnsbf");
-    });
+             // Menambahkan div anggota ke container anggota
+             anggotaContainer.appendChild(divAnggota);
+         }
+     });
+ })
+ .catch(error => console.error('Error:', error));
+});
 });
 
-// Menangani klik pada tombol Status untuk membuka popup Table
-document.querySelectorAll(".popup-btn-status").forEach(button => {
-    button.addEventListener("click", openTablePopup);
-});
-
-// Menangani klik pada tombol Keterangan untuk membuka popup Keterangan
-document.querySelectorAll(".open-modal-button2").forEach(button => {
-    button.addEventListener("click", openKeteranganPopup);
-});
-
-// Menangani klik pada tombol close di popup ID Pendaftaran
-popupCloseIdButton.addEventListener("click", closeIdPopup);
-
-// Menangani klik pada tombol close di popup Table
-popupCloseTableButton.addEventListener("click", closeTablePopup);
-
-// Menangani klik pada tombol close di popup Keterangan
-popupCloseKeteranganButton.addEventListener("click", closeKeteranganPopup);
-
-// Handle submit button in the Keterangan form
-const keteranganForm = document.getElementById("keterangan-form"); // Assuming the form has this ID
-if (keteranganForm) {
-    keteranganForm.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Tampilkan pesan berhasil menggunakan alert window
-        alert('Komentar berhasil disubmit!');
-
-        // Close only the Keterangan popup
-        closeKeteranganPopup();
-    });
-}
-
-
-// Ambil elemen modal dan tombol close untuk Detail Approval
-const modal = document.getElementById('modal-detail-approval');
-const closeModalButton = document.getElementById('modal-close');
-
-// Fungsi untuk membuka modal Detail Approval
-function openModal(step) {
-    modal.style.display = 'flex';
-    const modalTitle = modal.querySelector('h3');
-    modalTitle.textContent = Detail Approval - ${step};
-}
-
-// Fungsi untuk menutup modal
-function closeModal() {
-    modal.style.display = 'none';
-}
-
-// Event listener untuk tombol close
-closeModalButton.addEventListener('click', closeModal);
-
-// Tutup modal jika area luar konten di klik
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
-// Tambahkan event listener ke semua tombol dengan kelas open-modal-button
-document.querySelectorAll('.open-modal-button').forEach((button) => {
-    button.addEventListener('click', () => {
-        const step = button.getAttribute('data-step'); // Ambil data langkah
-        openModal(step); // Buka modal sesuai langkah
-    });
-});
-
-// Upload functionality (unchanged)
-document.querySelectorAll('.upload-icon').forEach(item => {
-    item.addEventListener('click', function() {
-        document.getElementById('upload-modal').style.display = 'block';
-    });
-});
-
-document.getElementById('close-modal').addEventListener('click', function() {
-    document.getElementById('upload-modal').style.display = 'none';
-});
-
-document.getElementById('upload-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const fileInput = document.getElementById('upload-file');
-    if (fileInput.files.length > 0) {
-        alert('File uploaded successfully!');
-        document.getElementById('upload-modal').style.display = 'none';
-    } else {
-        alert('Please select a file to upload.');
-    }
-});
-
-document.getElementById('select-file').addEventListener('change', function() {
-    var selectedFileType = this.value;
-    document.getElementById('upload-pdf-container').style.display = 'none';
-    document.getElementById('upload-link-container').style.display = 'none';
-
-    if (selectedFileType === 'pdf') {
-        document.getElementById('upload-pdf-container').style.display = 'block';
-    } else if (selectedFileType === 'excel') {
-        document.getElementById('upload-link-container').style.display = 'block';
-    }
-});
-
-document.getElementById('upload-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var fileInput = document.getElementById('upload_file');
-    var linkInput = document.getElementById('link');
-    var fileType = document.getElementById('select-file').value;
-
-    if (fileType === "pdf" && !fileInput.files.length) {
-        alert('Please select a PDF file.');
-    } else if (fileType === "excel" && !linkInput.value) {
-        alert('Please provide a link for the Excel file.');
-    } else {
-        alert('Form submitted successfully!');
-        document.getElementById('upload-modal').style.display = 'none';
-    }
-});
-
-document.getElementById('close-modal').addEventListener('click', function() {
-    document.getElementById('upload-modal').style.display = 'none';
-});
-
-
-
-
-    </script>
-
+     // Fungsi untuk menutup popup
+     document.getElementById('popup-close').addEventListener('click', function () {
+         document.getElementById('overlay').style.display = 'none';
+         document.getElementById('popup').style.display = 'none';
+     });
+ </script>
+ @endpush
 </body>
 </html>
-
 
 @endsection

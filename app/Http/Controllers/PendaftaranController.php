@@ -23,6 +23,28 @@ class PendaftaranController extends Controller
         return view('unit.daftarImprovement', compact('pendaftarans'));
     }
 
+    public function index2()
+    {
+        // Ambil semua data dari tabel pendaftaran
+        $pendaftarans = Pendaftaran::all();
+
+        \Log::debug('Pendaftaran data:', $pendaftarans->toArray());
+
+        // Kirim data ke view
+        return view('superadmin.daftarApproval', compact('pendaftarans'));
+    }
+
+    public function index3()
+    {
+        // Ambil semua data dari tabel pendaftaran
+        $pendaftarans = Pendaftaran::all();
+
+        \Log::debug('Pendaftaran data:', $pendaftarans->toArray());
+
+        // Kirim data ke view
+        return view('superadmin.daftarImprovementSA', compact('pendaftarans'));
+    }
+
     public function create()
     {
         // Ambil semua data perusahaan dan unit untuk opsi select
@@ -146,4 +168,6 @@ class PendaftaranController extends Controller
 
         return response()->json(['pendaftaran' => $pendaftaran, 'grupAnggota' => $grupAnggota]);
     }
+
+
 }

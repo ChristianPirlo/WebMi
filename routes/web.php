@@ -17,15 +17,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SuperaadminController;
+use App\Http\Controllers\RegisterController;
 
 
-// Login route
+// Rute untuk login
 Route::get('/', function () {
     return view('login');
 })->name('login');
 
 // Route untuk login (POST)
 Route::post('/', [AuthController::class, 'login']);
+
+
 
 // Dashboard routes untuk masing-masing role
 Route::group(['middleware' => 'auth'], function () {
@@ -152,13 +156,27 @@ Route::get('/unit/daftarImprovement', [PendaftaranController::class, 'index']);
 // Route untuk menampilkan struktur anggota berdasarkan idPendaftaran
 Route::get('/unit/daftarImprovement/{idPendaftaran}', [PendaftaranController::class, 'getStrukturAnggota']);
 
+// Route untuk menampilkan daftar approval
+Route::get('/superadmin/daftar-approval', [SuperddminController::class, 'showApprovalList'])->name('superadmin.daftarApproval');
+
+// Route untuk mengambil detail pendaftaran berdasarkan ID
+Route::get('/superadmin/pendaftaran/{idPendaftaran}', [SuperddminController::class, 'getPendaftaranDetails']);
+
 
 
 
 // Route::get('/unit/daftarImprovement', [PendaftaranController::class, 'getAllStrukturAnggota']);
 
 
+Route::get('/superadmin/daftarApproval', [PendaftaranController::class, 'index2']);
 
+// Route untuk menampilkan struktur anggota berdasarkan idPendaftaran
+Route::get('/superadmin/daftarApproval/{idPendaftaran}', [PendaftaranController::class, 'getStrukturAnggota']);
+
+Route::get('/superadmin/daftarImprovementSA', [PendaftaranController::class, 'index3']);
+
+// Route untuk menampilkan struktur anggota berdasarkan idPendaftaran
+Route::get('/superadmin/daftarImprovementSA/{idPendaftaran}', [PendaftaranController::class, 'getStrukturAnggota']);
 
 
 

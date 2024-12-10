@@ -11,6 +11,17 @@ body {
     position: relative;
 }
 
+/* Styling for the logo image */
+.logo-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px; /* Maximum width for the logo */
+    width: 100%; /* Responsive width */
+    height: auto; /* Keep aspect ratio */
+
+}
+
+/* Styling untuk login-container */
 .login-container {
     background-color: #FFFFFF;
     padding: 30px;
@@ -18,24 +29,13 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 400px;
-    transition: transform 0.3s;
+    transition: transform 0.4s;
 }
 .login-container:hover {
     transform: scale(1.05);
 }
-.login-container img {
-    width: 450px;
-    max-width: 370px;
-    height: 220px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    border-radius: 10px;
-}
-.login-container h1 {
-    font-size: 26px;
-    color: #4A6246;
-    margin-bottom: 20px;
-}
+
+/* Styling untuk input dan tombol */
 .login-container input[type="text"],
 .login-container input[type="password"] {
     width: calc(100% - 20px);
@@ -47,15 +47,13 @@ body {
     transition: border 0.3s;
     padding-left: 15px; /* Memberikan ruang untuk ikon */
 }
-#username {
-    width: calc(50% - 5px); /* Set width untuk Username */
-    margin-left: 25px;
-}
+
 .login-container input[type="text"]:focus,
 .login-container input[type="password"]:focus {
     border-color: #4A6246;
     outline: none;
 }
+
 .login-container button {
     width: 100%;
     padding: 10px;
@@ -71,38 +69,32 @@ body {
 .login-container button:hover {
     background-color: #3B4F3A;
 }
-.footer {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #777;
-}
+
+/* Slideshow container */
 .slideshow-container {
     position: relative;
-    width: 100%; /* Lebar penuh */
-    overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari kontainer */
-    height: 250px; /* Sesuaikan tinggi sesuai kebutuhan */
+    width: 100%;
+    overflow: hidden;
+    height: 230px; /* Adjust as needed */
 }
 
+/* Slide individual images */
 .mySlides {
     display: none;
     position: absolute;
-    width: 100%; /* Lebar penuh */
-    height: 100%; /* Tinggi penuh */
-    transition: transform 2s ease; /* Animasi transisi */
+    width: 100%;
+    height: 100%;
+    transition: transform 2s ease;
 }
-.mySlides image {
-    display: none;
-    position: absolute;
-    width: 150px; /* Lebar penuh */
-    height: 300px; /* Tinggi penuh */
-    transition: transform 2s ease; /* Animasi transisi */
-}
-.ad-image {
-    max-width: 100%; /* Mengatur lebar maksimum gambar iklan */
-    height: auto; /* Memastikan tinggi gambar otomatis */
-    border: 2px solid #ccc; /* Menambahkan border untuk gambar iklan */
+
+.mySlides img {
+    width: 100%; /* Full width for images */
+    height: 100%; /* Full height for images */
+    object-fit: cover; /* Ensure the image covers the container */
     border-radius: 8px;
 }
+
+/* Text overlay for the slideshow */
 .text {
     color: #f2f2f2;
     font-size: 15px;
@@ -113,8 +105,23 @@ body {
     text-align: center;
 }
 
-@keyframes slide {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+/* Styling untuk teks dan link daftar akun baru */
+.text-right {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
+.text-right span {
+    color: #5E5E5E;
+    font-size: 14px;
+}
+
+.text-right a {
+    color: rgb(47, 47, 230);
+    font-size: 14px;
+    text-decoration: underline;
+}
+.text-right a:hover {
+    text-decoration: underline;
+}
