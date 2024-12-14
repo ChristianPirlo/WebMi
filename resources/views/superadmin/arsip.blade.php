@@ -71,17 +71,51 @@
     </section>
 
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('search-archive');
+        const yearFilter = document.getElementById('year-filter');
+        const categoryFilter = document.getElementById('category-filter');
+        const archiveSections = document.querySelectorAll('.year-archive');
 
+        // Fungsi utama untuk pencarian dan filter
+        function filterAndSearchArchives() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedYear = yearFilter.value;
+            const selectedCategory = categoryFilter.value;
 
+            archiveSections.forEach(section => {
+                const archiveItems = section.querySelectorAll('.archive-list li');
+                const sectionYear = section.getAttribute('data-year');
+                let hasVisibleItem = false;
 
+                archiveItems.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    const itemCategory = item.textContent.toLowerCase(); // Misal kategori ada dalam teks
 
+                    // Logika Pencocokan
+                    const matchesSearch = searchTerm === '' || itemText.includes(searchTerm);
+                    const matchesYear = selectedYear === '' || sectionYear === selectedYear;
+                    const matchesCategory = selectedCategory === '' || itemCategory.includes(selectedCategory);
 
+                    // Tentukan apakah item ditampilkan
+                    if (matchesSearch && matchesYear && matchesCategory) {
+                        item.style.display = 'block';
+                        hasVisibleItem = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
 
+                // Tampilkan/sembunyikan section berdasarkan hasil filter
+                section.style.display = hasVisibleItem ? 'block' : 'none';
+            });
+        }
 
-
-
-
-
-
-
+        // Event listeners untuk semua filter dan input
+        searchInput.addEventListener('input', filterAndSearchArchives);
+        yearFilter.addEventListener('change', filterAndSearchArchives);
+        categoryFilter.addEventListener('change', filterAndSearchArchives);
+    });
+</script>
 @endsection

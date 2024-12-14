@@ -169,5 +169,14 @@ class PendaftaranController extends Controller
         return response()->json(['pendaftaran' => $pendaftaran, 'grupAnggota' => $grupAnggota]);
     }
 
+    public function getStatusDetails($id)
+    {
+        $details = Proses::where('id_pendaftaran', $id)->get();
+
+        return response()->json($details);
+    }
+
+
+
 
 }

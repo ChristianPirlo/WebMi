@@ -57,7 +57,7 @@
                                 </td>
                                 <td>{{ $pendaftaran->created_at ? $pendaftaran->created_at->format('d/m/Y') : '-' }}</td>
                                 <td>
-                                    <button class="popup-btn-status">Langkah 1</button>
+                                    <button class="popup-btn-status">Pendaftaran</button>
                                 </td>
                             </tr>
                         @endforeach

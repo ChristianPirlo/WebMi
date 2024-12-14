@@ -197,7 +197,19 @@ Route::get('/form-user', function() {
 Route::post('/user', [DataController::class, 'insertUser'])->name('data.insertUser');
 
 
+Route::get('/progress/{id_pendaftaran}', [ProgressController::class, 'getProgress'])->name('progress.get');
+Route::post('/progress/upload', [ProgressController::class, 'uploadStep'])->name('progress.upload');
 
-// Authentication routes
+Route::get('/unit/proses/{id_pendaftaran}', [ProsesController::class, 'getProses']);
+Route::get('/unit/daftarImprovement/{id}', [UnitController::class, 'getImprovementData']);
+Route::get('/unit/proses/{id}', [UnitController::class, 'getProcessData']);
+
+
+Route::get('/unit/detailStatus/{id_pendaftaran}', [PendaftaranController::class, 'getDetailStatus']);
+
+Route::get('/get-status-details/{id}', [PendaftaranController::class, 'getStatusDetails']);
+
+
+/// Authentication routes
 Auth::routes();
 

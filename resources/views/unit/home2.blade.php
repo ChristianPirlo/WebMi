@@ -9,9 +9,34 @@
 
 <div class="dashboard-content">
 
-    <header class="main-header">
-        <h1>Welcome, Department Groups!</h1>
-    </header>
+    <div class="dashboard-content">
+
+        <header class="main-header">
+            <div class="filter-container">
+
+                <label for="filterYear">Tahun:</label>
+                <select id="filterYear">
+                    <option value="" disabled>Pilih Tahun</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+
+                <label for="filterGroup">Grup:</label>
+                <select id="filterGroup">
+                    <option value="" disabled selected>Pilih Grup</option>
+                    <option value="Group A">Group A</option>
+                    <option value="Group B">Group B</option>
+                    <option value="Group C">Group C</option>
+                </select>
+
+                <button id="applyFilter">Search</button>
+
+            </div>
+
+        </header>
+    </div>
+
 
     <!-- Stats Section -->
     <section class="stats-section">
@@ -37,51 +62,12 @@
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-envelope stat-icon"></i>
+            <i class="fas fa-money-bill-wave stat-icon"></i>
             <div class="stat-info">
                 <h3>4.000.000</h3>
                 <p>Cost Savings</p>
             </div>
         </div>
-    </section>
-
-    <!-- Progress Tracker Section -->
-    <section class="filter-section">
-        <div class="filter-container">
-            <select id="filterYear" class="filter">
-                <option value="" disabled selected>Pilih Tahun</option>
-                <option value="">Semua</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-            </select>
-        </div>
-
-        <div class="filter-container">
-            <select id="filterId" class="filter">
-                <option value="" disabled selected>ID Pendaftaran</option>
-                <option value="">Semua</option>
-                <option value="ID001">ID001</option>
-                <option value="ID002">ID002</option>
-                <option value="ID003">ID003</option>
-            </select>
-        </div>
-
-        <div class="filter-container">
-            <select id="filterGroup" class="filter">
-                <option value="" disabled selected>Pilih Grup</option>
-                <option value="">Semua</option>
-                <option value="Group A">Group A</option>
-                <option value="Group B">Group B</option>
-                <option value="Group C">Group C</option>
-            </select>
-        </div>
-
-
-        <button id="applyFilter" class="filter-btn">
-            <i class="fas fa-search"> </i> <!-- Ikon Font Awesome -->
-        </button>
-
     </section>
 
     <!-- Progress Tracker Section -->
@@ -111,27 +97,42 @@
         </div>
     </section>
 
-    {{-- <section class="task-section">
-        <h2>To-Do List</h2>
-        <ul class="task-list">
-            <li><input type="checkbox"> Review project proposal <span>Due: Tomorrow</span></li>
-            <li><input type="checkbox" checked> Submit monthly report <span>Completed</span></li>
-            <li><input type="checkbox"> Plan team meeting <span>Due: 3 days</span></li>
-        </ul>
-    </section>
-
-    <section class="recent-activities">
-        <h2>Recent Activities</h2>
-        <ul class="activity-list">
-            <li><i class="fas fa-check-circle"></i> John Doe completed a task. <span>2 hours ago</span></li>
-            <li><i class="fas fa-edit"></i> Settings updated by admin. <span>4 hours ago</span></li>
-            <li><i class="fas fa-user-plus"></i> New user registered. <span>1 day ago</span></li>
-        </ul>
-    </section> --}}
-
 </div>
 
 <script>
+   // Set the default year to current year
+   document.addEventListener('DOMContentLoaded', function() {
+        const filterYear = document.getElementById('filterYear');
+        const currentYear = new Date().getFullYear();
+
+        // Set default year option to current year
+        filterYear.value = currentYear;
+
+        document.getElementById('applyFilter').addEventListener('click', function () {
+            const selectedYear = filterYear.value;
+            const filterGroup = document.getElementById('filterGroup').value;
+
+            const steps = document.querySelectorAll('.step');
+
+            steps.forEach(step => {
+                const stepYear = step.getAttribute('data-year');
+                const stepGroup = step.getAttribute('data-group');
+
+                if (
+                    (selectedYear === '' || selectedYear === stepYear) &&
+                    (filterGroup === '' || filterGroup === stepGroup)
+                ) {
+                    step.style.display = 'inline-block';
+                } else {
+                    step.style.display = 'none';
+                }
+            });
+        });
+
+        // Optional: Automatically trigger the filter when the page loads with default selection
+        document.getElementById('applyFilter').click();
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         let steps = document.querySelectorAll('.step');
         let currentStep = 0;
@@ -147,36 +148,6 @@
                 currentStep++;
             }
         }, 2000); // Every 2 seconds
-    });
-
-    document.getElementById('applyFilter').addEventListener('click', function () {
-        const filterId = document.getElementById('filterId').value;
-        const filterGroup = document.getElementById('filterGroup').value;
-        const filterYear = document.getElementById('filterYear').value;
-
-        const steps = document.querySelectorAll('.step');
-
-        steps.forEach(step => {
-            const stepId = step.getAttribute('data-id');
-            const stepGroup = step.getAttribute('data-group');
-            const stepYear = step.getAttribute('data-year');
-
-            // Jika semua filter kosong (default), tampilkan semua indikator
-            if (filterId === '' && filterGroup === '' && filterYear === '') {
-                step.style.display = 'inline-block'; // Tampilkan semua indikator
-            } else {
-                // Tampilkan indikator yang sesuai dengan filter
-                if (
-                    (filterId === '' || filterId === stepId) &&
-                    (filterGroup === '' || filterGroup === stepGroup) &&
-                    (filterYear === '' || filterYear === stepYear)
-                ) {
-                    step.style.display = 'inline-block'; // Tampilkan indikator yang sesuai
-                } else {
-                    step.style.display = 'none'; // Sembunyikan indikator yang tidak sesuai
-                }
-            }
-        });
     });
 </script>
 

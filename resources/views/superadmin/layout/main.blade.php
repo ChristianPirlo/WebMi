@@ -5,25 +5,21 @@
     <link rel="stylesheet" href="../../css/main.css">
     <script>
         function confirmLogout() {
-            // Tampilkan pesan konfirmasi sebelum logout
             const isConfirmed = confirm("Apakah anda yakin akan logout?");
             if (isConfirmed) {
-                // Jika pengguna mengonfirmasi, redirect ke halaman login
                 window.location.href = '/';
             }
         }
+
         function logout() {
-            // Redirect ke halaman login
             window.location.href = '/';
         }
 
-        // Fungsi untuk menandai menu yang aktif
         function setActiveMenu() {
-            const currentPath = window.location.pathname; // Mendapatkan path saat ini
-            const menuItems = document.querySelectorAll('.menu a'); // Mengambil semua item menu
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.menu a');
 
             menuItems.forEach(item => {
-                // Jika href dari item menu sama dengan currentPath, tambahkan kelas 'active'
                 if (item.getAttribute('href') === currentPath) {
                     item.classList.add('active');
                 } else {
@@ -32,10 +28,15 @@
             });
         }
 
-        // Panggil fungsi setActiveMenu saat halaman dimuat
+        function toggleProfile() {
+            const profilePopup = document.getElementById('profile-popup');
+            profilePopup.style.display = (profilePopup.style.display === 'block') ? 'none' : 'block';
+        }
+
         window.onload = setActiveMenu;
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <div class="sidebar">
@@ -55,18 +56,17 @@
                 <i class="fas fa-list"></i>
                 Daftar Improvement
             </a>
-            <a href="/superadmin/arsip">
-                <i class="fas fa-book"></i>
-                Arsip SMIF
-            </a>
             <a href="/superadmin/report">
                 <i class="fas fa-chart-bar"></i>
                 Report SMIF
             </a>
+            <a href="/superadmin/arsip">
+                <i class="fas fa-folder"></i>
+                Arsip SMIF
+            </a>
         </div>
         <div class="logout">
             <img src="../images/gambarscft.png" class="logout-icon">
-            <!-- Panggil fungsi confirmLogout ketika tombol Logout diklik -->
             <button onclick="confirmLogout()">
                 <i class="fas fa-power-off"></i>
                 Logout
@@ -77,12 +77,15 @@
         <div class="topbar">
             <h3>E-SMIF</h3>
 
-            <div class="profile-icon">C</div>
+            <div class="profile-icon" onclick="toggleProfile()">K</div>
         </div>
     </div>
     <div class="main-content">
         @yield('content')
     </div>
-    @stack('scripts')
 </body>
+@stack('scripts')
+
 </html>
+
+

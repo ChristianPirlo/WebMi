@@ -1,4 +1,3 @@
-
 <html>
  <head>
   <title>
@@ -66,9 +65,8 @@
      Dashboard
     </a>
     <a href="/unit/pendaftaran2">
-        <i class="fas fa-file-alt">
-        </i>
-    Pendaftaran Improvement
+        <i class="fas fa-pen"></i>
+    Pendaftaran
         </a>
     <a class="active" href="/unit/daftarImprovement">
         <i class="fas fa-list">
@@ -76,13 +74,13 @@
     Delta Improvement
        </a>
        <a class="active" href="/unit/arsip2" onclick="toggleSubmenu('submenu-arsip')">
-        <i class="fas fa-book"></i>
+        <i class="fas fa-folder"></i>
         Arsip SMIF
     </a>
     <div id="submenu-arsip" class="submenu">
         <a href="/unit/arsipfoto2" class="submenu-item">
             <i class="fas fa-camera"></i>
-            Arsip Foto
+         Arsip Foto
         </a>
     </div>
 
@@ -110,6 +108,9 @@
     @yield('content')
    </div>
 </div>
-@stack('scripts')
+
  </body>
+ @stack('scripts')
 </html>
+
+

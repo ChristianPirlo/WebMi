@@ -114,7 +114,7 @@ button.addEventListener('click', function () {
  anggotaContainer.innerHTML = ''; // Hapus semua elemen di dalam container
 
  // Ambil data dari server berdasarkan id_pendaftaran
- fetch(`/superadmin/daftarApproval/${idPendaftaran}`, {
+ fetch(`/superadmin/daftarImprovementSA/${idPendaftaran}`, {
      method: 'GET',
      headers: { 'Content-Type': 'application/json' }
  })
