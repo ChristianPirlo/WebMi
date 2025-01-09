@@ -4,7 +4,7 @@ body {
 }
 
 .sidebar {
-    width: 250px;
+    width: 240px;
     height: 100vh; /* Memastikan sidebar mengambil seluruh tinggi viewport */
     background-color: #ffffff;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
@@ -41,7 +41,7 @@ body {
     padding: 15px 20px;
     color: #333;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     transition: background-color 0.3s, color 0.3s; /* Transisi halus */
 }
 
@@ -68,7 +68,7 @@ body {
 
 .sidebar .logout button {
     background-color: #ffffff;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -77,9 +77,10 @@ body {
     justify-content: center;
     width: 100%;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 .sidebar .logout button:hover {
-    background-color:#7d9093; /* Mengubah warna background saat hover */
+    background-color:#4a6b4f; /* Mengubah warna background saat hover */
     color: #ffffff; /* Mengubah warna teks saat hover */
     transform: scale(1.05); /* Efek sedikit membesar saat hover */
 }
@@ -94,7 +95,7 @@ body {
 }
 
 .topbar {
-    height: 50px;
+    height: 40px;
     padding: 15px 20px;
     background-color: #4a6b4f;
     color: white;
@@ -103,7 +104,7 @@ body {
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed; /* Menetapkan posisi tetap */
-    left: 250px; /* Menjaga jarak dari sidebar */
+    left: 240px; /* Menjaga jarak dari sidebar */
     right: 0; /* Mengisi lebar yang tersisa */
     top: 0; /* Menempel di bagian atas */
 }

@@ -19,6 +19,8 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SuperaadminController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UnitController;
 
 
 // Rute untuk login
@@ -46,6 +48,17 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('viewer.home3');
 
 });
+
+// Rute untuk halaman register
+Route::get('/pendaftaran/register', [RegisterController::class, 'create'])->name('register.create');
+
+// Rute untuk menyimpan data registrasi
+Route::post('/pendaftaran/register', [RegisterController::class, 'store'])->name('register.store');
+
+// API untuk mendapatkan unit berdasarkan perusahaan
+Route::get('/api/units/{id_perusahaan}', [RegisterController::class, 'getUnitsByPerusahaan']);
+
+Route::get('/unit/home2', [UnitController::class, 'home2'])->name('unit.home2');
 
 // routes superadmin page (pendaftaran, proposal and approval)
 Route::get('/superadmin/pendaftaran', function () {
@@ -114,7 +127,7 @@ Route::get('/sysadmin/user', function () {
 
 // routes/web.php
 Route::get('/superadmin/home', 'SuperadminController@home')->name('superadmin.home');
-Route::get('/unit/home2', 'UnitController@home2')->name('unit.home2');
+// Route::get('/unit/home2', 'UnitController@home2')->name('unit.home2');
 Route::get('/viewer/home3', 'ViewerController@home3')->name('viewer.home3');
 
 Route::get('/logout', 'PageController@logout');
@@ -208,6 +221,25 @@ Route::get('/unit/proses/{id}', [UnitController::class, 'getProcessData']);
 Route::get('/unit/detailStatus/{id_pendaftaran}', [PendaftaranController::class, 'getDetailStatus']);
 
 Route::get('/get-status-details/{id}', [PendaftaranController::class, 'getStatusDetails']);
+
+Route::post('/unit/uploadDokumen/{idPendaftaran}', [PendaftaranController::class, 'uploadDokumen']);
+
+Route::get('/unit/daftarImprovement/status/{idPendaftaran}', [PendaftaranController::class, 'statusImprovement']);
+
+// // Route untuk menyimpan data unggahan
+// Route::post('/unit/daftarImprovement', [UploadController::class, 'store']);
+
+// // Route untuk mengambil data berdasarkan ID pendaftaran
+// Route::get('/unit/daftarImprovement/{id}', [UploadController::class, 'getData']);
+
+// // Route untuk mengunggah dokumen
+// Route::post('/unit/daftarImprovement/upload/{id}', [UploadController::class, 'uploadDokumen']);
+
+// Route::get('/unit/statusImprovement/{id_pendaftaran}', [PendaftaranController::class, 'statusImprovement']);
+
+Route::get('/unit/prosesStatus/{idPendaftaran}', [UploadController::class, 'getStatus']);
+Route::post('/unit/uploadDokumen/{idProses}', [UploadController::class, 'uploadDokumen']);
+
 
 
 /// Authentication routes

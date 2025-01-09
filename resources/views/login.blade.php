@@ -6,58 +6,7 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/login.css">
-    <style>
-        /* Memastikan konten berada di tengah layar */
-        .vh-100 {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .row {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .col-md-7 {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .login-container {
-            text-align: center;
-            max-width: 450px;
-            width: 100%;
-        }
-
-        /* Penataan untuk slideshow */
-        .mySlides {
-            display: none;
-        }
-
-        .slideshow-container {
-            max-width: 100%;
-            margin: auto;
-        }
-
-        /* Menampilkan logo di tengah dan memperbesar ukuran logo */
-        .logo-image {
-            display: block;
-            margin: 0 auto;
-            width: 80%; /* Ubah persentase ini untuk memperbesar logo */
-            max-width: 400px; /* Mengatur batas maksimal lebar logo */
-        }
-    </style>
 </head>
 <body>
     <section class="vh-100">
@@ -89,11 +38,11 @@
                             @csrf
                             <!-- Input Nomor Perner -->
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="perner" name="perner" placeholder="Masukkan PERNER / NIK" required>
+                                <input type="text" class="form-control" id="perner" name="perner" placeholder="Perner / NIK" required>
                             </div>
                             <!-- Input Password -->
                             <div class="mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                             </div>
                             <!-- Tombol Login -->
                             <div class="d-grid">

@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnitController extends Controller
 {
 
     public function home2()
-    {
-        return view('unit/home2');
-    }
+{
+    // Menghitung jumlah unik id_unit
+    $jumlahUnit = DB::table('unit')->select('id_unit')->distinct()->count();
+    // Menghitung jumlah unik id_pendaftaran
+    $jumlahGrup = DB::table('pendaftaran')->select('id_pendaftaran')->distinct()->count();
+    // Menghitung jumlah komite (manager)
+    $jumlahManager = DB::table('tb_user')->where('role_user', 'manager')->count();
+
+    return view('unit.home2', compact('jumlahUnit', 'jumlahGrup', 'jumlahManager'));
+}
+
     public function daftarImprovement()
     {
         return view('unit/daftarImprovement');
@@ -43,5 +52,13 @@ class UnitController extends Controller
     {
         return view('unit/arsipfoto2');
     }
+
+    public function getUnitsByPerusahaan($id_perusahaan)
+    {
+        $units = Unit::where('id_perusahaan', $id_perusahaan)->get();
+        return response()->json($units);
+    }
+
+
 }
 

@@ -14,30 +14,43 @@ use Illuminate\Support\Facades\Validator;  // Menambahkan import Validator
 
 class RegisterController extends Controller
 {
-    public function showRegisterForm()
+    public function create()
     {
-        $units = Unit::with('perusahaan')->get();
-        return view('register', compact('units'));
+        $perusahaan = Perusahaan::all();
+        $units = Unit::all();
+        return view('register', compact('perusahaan', 'units'));
     }
 
-    public function register(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'id_unit' => 'required|exists:units,id_unit',
-            'email_user' => 'required|email|unique:tb_user,email_user',
-            'perner' => 'required|unique:tb_user,perner',
-            'password' => 'required|min:6|confirmed',
+            'nama_user' => 'required|string|max:255',
+            'perner' => 'required|string|max:50|unique:tb_user,perner',
+            'password' => 'required|string|min:6',
+            'email_user' => 'required|email|max:255|unique:tb_user,email_user',
+            'id_perusahaan' => 'required|exists:perusahaan,id_perusahaan',
+            'id_unit' => 'required|exists:unit,id_unit',
         ]);
 
         User::create([
-            'id_unit' => $request->id_unit,
-            'email_user' => $request->email_user,
+            'nama_user' => $request->nama_user,
             'perner' => $request->perner,
             'password' => Hash::make($request->password),
-            'role_user' => 'user',
-            'aktif' => 1,
+            'email_user' => $request->email_user,
+            'id_unit' => $request->id_unit,
+            'role_user' => 'user', // Default role
+            'aktif' => 1, // Default active
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil, silakan login.');
+        // Redirect langsung ke halaman login tanpa menggunakan route
+    return redirect('/')->with('success', 'Registrasi berhasil!');
     }
+
+    public function getUnitsByPerusahaan($id_perusahaan)
+    {
+        $units = Unit::where('id_perusahaan', $id_perusahaan)->get();
+        return response()->json($units);
+    }
+
+
 }

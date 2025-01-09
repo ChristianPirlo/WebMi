@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -10,7 +11,10 @@ class SuperadminController extends Controller
 {
     public function home()
     {
-        return view('superadmin/home');
+        // Menghitung jumlah unik id_pendaftaran
+        $jumlahGrup = DB::table('pendaftaran')->select('id_pendaftaran')->distinct()->count();
+
+        return view('superadmin.home', compact('jumlahGrup'));
     }
     public function pendaftaran()
     {

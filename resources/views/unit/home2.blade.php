@@ -41,23 +41,23 @@
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="stat-card">
-            <i class="fas fa-users stat-icon"></i>
+            <i class="fas fa-users-cog stat-icon"></i>
             <div class="stat-info">
-                <h3>5</h3>
+                <h3>{{ $jumlahManager }}</h3>
                 <p>Jumlah Komite</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-users stat-icon"></i>
+            <i class="fas fa-building stat-icon"></i>
             <div class="stat-info">
-                <h3>69</h3>
+                <h3>{{ $jumlahUnit }}</h3>
                 <p>Jumlah Unit</p>
             </div>
         </div>
         <div class="stat-card">
             <i class="fas fa-users stat-icon"></i>
             <div class="stat-info">
-                <h3>100</h3>
+                <h3>{{ $jumlahGrup }}</h3>
                 <p>Jumlah Grup</p>
             </div>
         </div>

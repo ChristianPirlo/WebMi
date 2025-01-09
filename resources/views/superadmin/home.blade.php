@@ -5,64 +5,70 @@
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="../../css/dashboard.css">
+<link rel="stylesheet" href="../../css/dashboardSA.css">
 
 
 <div class="dashboard-content">
-<h2>Progres Risalah</h2>
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>{{ $jumlahGrup }}</h3>
+                <p>Grup</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>10</h3>
                 <p>Langkah 1</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 2</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 3</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 4</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 5</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 6</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 7</p>
             </div>
         </div>
         <div class="stat-card">
-            <i class="fas fa-user stat-icon"></i>
+            <i class="fas fa-file-alt stat-icon"></i>
             <div class="stat-info">
                 <h3>5</h3>
                 <p>Langkah 8</p>

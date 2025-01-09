@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/tableUnitDaftar.css">
 
 <div class="container">
-    <h1>PERMOHONAN PENDAFTARAN MANAGEMENT IMPROVEMENT</h1>
+    <h1>PERMOHONAN PENDAFTARAN SGA & SCFT</h1>
 
  <!-- Error Handling -->
     @if ($errors->any())
@@ -24,6 +24,15 @@
 
 <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    <div class="form-group">
+        <label for="kreteria_grup">Kriteria Improvement</label>
+        <select class="pilih" id="kreteria_grup" name="kreteria_grup" required>
+            <option value="" disabled selected>Pilih Kriteria</option>
+            <option value="scft">SIDO CROSS FUNCTIONAL TEAM (SCFT)</option>
+            <option value="sga">SIDO GROUP ACTIVITY (SGA)</option>
+            {{-- <option value="ss">SIDO SARAN (SS)</option> --}}
+        </select>
+    </div>
         <!-- Form Identitas Grup -->
         <div class="section-title">IDENTITAS GRUP</div>
             <div class="form-group">
@@ -49,15 +58,7 @@
                 <label for="nama_grup">Nama Grup</label>
                 <input type="text" id="nama_grup" name="nama_grup" value="{{ old('nama_grup') }}" required>
             </div>
-            <div class="form-group">
-                <label for="kreteria_grup">Kriteria Improvement</label>
-                <select class="pilih" id="kreteria_grup" name="kreteria_grup" required>
-                    <option value="" disabled selected>Pilih Kriteria</option>
-                    <option value="scft">SIDO CROSS FUNCTIONAL TEAM (SCFT)</option>
-                    <option value="sga">SIDO GROUP ACTIVITY (SGA)</option>
-                    <option value="ss">SIDO SARAN (SS)</option>
-                </select>
-            </div>
+
 
 <!-- Tema -->
 <div class="section-title">KETERANGAN TEMA</div>
